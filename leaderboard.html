@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Leaderboard</title>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBLnNRHR6PaTu8kKaWUQxfJjC26kfRxhC4",
+            authDomain: "quizze-brainax.firebaseapp.com",
+            projectId: "quizze-brainax",
+            storageBucket: "quizze-brainax.appspot.com",
+            messagingSenderId: "341347775571",
+            appId: "1:341347775571:web:2f767dcd60ffa36d3f82a6",
+            measurementId: "G-K0YJCQ2D61"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function fetchLeaderboard() {
+            const leaderboardTable = document.getElementById('leaderboard');
+            leaderboardTable.innerHTML = "<tr><th>Team Number</th><th>Score</th><th>Time Taken (s)</th></tr>";
+
+            const q = query(collection(db, "quizResults"), orderBy("score", "desc"), orderBy("totalTime", "asc"));
+            const querySnapshot = await getDocs(q);
+            
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const row = `<tr><td>${data.teamNumber}</td><td>${data.score}</td><td>${data.totalTime}</td></tr>`;
+                leaderboardTable.innerHTML += row;
+            });
+        }
+        
+        window.onload = fetchLeaderboard;
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Quiz Leaderboard</h2>
+    <table id="leaderboard">
+        <tr>
+            <th>Team Number</th>
+            <th>Score</th>
+            <th>Time Taken (s)</th>
+        </tr>
+    </table>
+</body>
+</html>

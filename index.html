@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="rules-container">
+        <center><img src="logo.png" alt=" sdc logo"></center>
+        <h2>Welcome to Quizze Brainax</h2>
+        <h4>Please read the following rules carefully:</h4>
+        <ul>
+            <li>rule 1</li>
+            <li>rule 2</li>
+            <li>rule 3</li>
+        </ul>
+        <center> <button type="" onclick="start();">I understand</button> </center>
+    </div>
+    <div id="login-container" class="hidden">
+        <h2>Enter Your Details</h2>
+        <form id="login-form">
+            <label for="Team Number">Team Number:</label>
+            <input type="text" id="Team-no" name="Team-no" required>
+            <br>
+
+            <button type="submit">Start</button>
+        </form>
+    </div>
+
+    <div id="quiz-container" class="hidden">
+        <h2>Quiz</h2>
+        <div id="question-container" class="hide"></div>
+        <div id="timer">Time left: <span id="time">20</span> seconds</div>
+        <!-- <button id="next-question" class="hidden">Next Question</button> -->
+    </div>
+
+    <div id="result-container" class="hidden">
+        <h2>Results</h2>
+        <p id="result"></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
