@@ -1,16 +1,16 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .poppins-regular {
     font-family: "Poppins", serif;
     font-weight: 400;
     font-style: normal;
-  }
-  
+}
 
-*{
+
+* {
     font-family: poppins;
 }
+
 body {
     display: flex;
     justify-content: center;
@@ -26,22 +26,26 @@ body {
     display: none;
 }
 
-#login-container, #result-container,#rules-container {
+#login-container,
+#result-container,
+#rules-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#quiz-container{
+#quiz-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 90%; /* Ensures it fits well in different screen sizes */
-    max-width: 600px; /* Prevents it from being too wide */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    /* Ensures it fits well in different screen sizes */
+    max-width: 600px;
+    /* Prevents it from being too wide */
     text-align: center;
-    
+
 }
 
 .hide {
@@ -67,6 +71,8 @@ button {
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 100%;
     max-width: 300px;
+    outline: none;
+    box-shadow: none;
 }
 
 button:hover {
@@ -74,9 +80,11 @@ button:hover {
     transform: translateY(-2px);
 }
 
-#question-container{
-    width: 100%; /* Ensures all buttons have equal width */
-    max-width: 400px; /* Prevents excessively wide buttons */
+#question-container {
+    width: 100%;
+    /* Ensures all buttons have equal width */
+    max-width: 400px;
+    /* Prevents excessively wide buttons */
     background-color: #ffffff;
     border: none;
     cursor: pointer;
@@ -85,14 +93,25 @@ button:hover {
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-align: center;
     padding: 15px;
-    margin: 0 auto; /* Centers horizontally */
+    margin: 0 auto;
+    /* Centers horizontally */
     display: flex;
     flex-direction: column;
     align-items: center;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 768px) {
     .options-container button {
-        max-width: 100%; /* Adjusts width for smaller screens */
+        max-width: 100%;
+        /* Adjusts width for smaller screens */
     }
 }
+
+button, button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
