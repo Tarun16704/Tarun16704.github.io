@@ -63,39 +63,6 @@ button:active {
     transform: scale(0.95);
 }
 
-.options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-.option-btn {
-    padding: 12px;
-    background-color: #f8f9fa;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    width: 100%;
-}
-
-.option-btn:hover {
-    background-color: #007BFF;
-    color: #fff;
-}
-
-.option-btn:active {
-    transform: scale(0.98);
-}
-
-.option-btn.selected {
-    background-color: #28a745;
-    color: #fff;
-    border-color: #28a745;
-}
-
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -121,3 +88,12 @@ button:active {
         transform: translateY(0);
     }
 }
+
+.hide {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
