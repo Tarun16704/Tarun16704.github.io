@@ -29,6 +29,7 @@ let score = 0;
 let timer;
 let timeLeft = 20;
 let teamNumber = "";
+let teamName = "";
 let startTime;
 let endTime;
 
@@ -48,6 +49,11 @@ window.start = function () {
 
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    teamName = document.getElementById('tname').value.trim();
+    if (!teamName) {
+        alert("Please enter a valid Team Name");
+        return;
+    }
     teamNumber = document.getElementById('Team-no').value.trim();
     if (!teamNumber) {
         alert("Please enter a valid Team Number");
@@ -118,26 +124,29 @@ async function showResults() {
     quizContainer.classList.add('hidden');
     resultContainer.classList.remove('hidden');
 
-    let totalTimeSeconds = Math.floor((endTime - startTime) / 1000);
+    let totalTimeMs = endTime - startTime; // Total time in milliseconds
+    let totalTimeSeconds = Math.floor(totalTimeMs / 1000);
     let minutes = Math.floor(totalTimeSeconds / 60);
     let seconds = totalTimeSeconds % 60;
-    let formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`; // Ensures two-digit seconds
+    let milliseconds = totalTimeMs % 1000;
+    let formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`; // mm:ss.xxx
 
     resultElement.textContent = `You scored ${score} out of ${questions.length} in ${formattedTime}`;
 
     try {
         await addDoc(collection(db, "quizResults"), {
+            teamName: teamName,
             teamNumber: teamNumber,
             score: score,
-            totalTime: formattedTime, // Store formatted time in Firebase
+            totalTime: formattedTime, // Formatted time (mm:ss.xxx)
+            totalMilliseconds: totalTimeMs, // Store raw milliseconds
             date: new Date().toISOString()
         });
-        console.log("Result saved successfully!");
+        console.log("Result saved successfully with milliseconds!");
     } catch (e) {
         console.error("Error saving result: ", e);
     }
 }
-
 
 
 document.addEventListener('visibilitychange', function () {
