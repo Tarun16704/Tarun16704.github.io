@@ -22,59 +22,106 @@
         const db = getFirestore(app);
 
         async function fetchLeaderboard() {
-            const leaderboardTable = document.getElementById('leaderboard');
-            leaderboardTable.innerHTML = "<tr><th>Team Number</th><th>Score</th><th>Time Taken (s)</th></tr>";
+            const leaderboardTable = document.getElementById('leaderboard-body');
+            // leaderboardTable.innerHTML = ""; // Clear previous data
 
-            const q = query(collection(db, "quizResults"), orderBy("score", "desc"), orderBy("totalTime", "asc"));
+            const q = query(collection(db, "quizResults"), orderBy("score", "desc"), orderBy("totalMilliseconds", "asc"));
             const querySnapshot = await getDocs(q);
             
+            let rank = 1; // To display ranking
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
-                const row = `<tr><td>${data.teamNumber}</td><td>${data.score}</td><td>${data.totalTime}</td></tr>`;
+                let formattedTime = formatTime(data.totalMilliseconds);
+                const row = `
+                    <tr>
+                        <td>${rank}</td>
+                        <td>${data.teamName || "N/A"}</td>
+                        <td>${data.teamNumber}</td>
+                        <td>${data.score}</td>
+                        <td>${formattedTime}</td>
+                    </tr>`;
                 leaderboardTable.innerHTML += row;
+                rank++;
             });
         }
-        
+
+        function formatTime(milliseconds) {
+            let totalSeconds = Math.floor(milliseconds / 1000);
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+            let ms = milliseconds % 1000;
+            return `${minutes}:${seconds.toString().padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
+        }
+
         window.onload = fetchLeaderboard;
     </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            margin: 0;
         }
         h2 {
-            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 15px;
         }
         table {
-            width: 60%;
+            width: 80%;
+            max-width: 800px;
             border-collapse: collapse;
             background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
         th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
             text-align: center;
         }
         th {
             background-color: #007BFF;
             color: white;
+            font-size: 16px;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        @media (max-width: 768px) {
+            table {
+                width: 90%;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <h2>Quiz Leaderboard</h2>
-    <table id="leaderboard">
-        <tr>
-            <th>Team Number</th>
-            <th>Score</th>
-            <th>Time Taken (s)</th>
-        </tr>
+    <h2>🏆 Quiz Leaderboard 🏆</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Team Name</th>
+                <th>Team Number</th>
+                <th>Score</th>
+                <th>Time Taken</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+            <!-- Leaderboard data will be inserted here -->
+        </tbody>
     </table>
 </body>
 </html>
