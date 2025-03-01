@@ -72,28 +72,59 @@ function startQuiz() {
     startTimer();
 }
 
+function loadNextQuestion() {
+    let questionContainer = document.getElementById("question-container");
+
+    // Add fade-out effect
+    questionContainer.classList.add("fade-out");
+
+    setTimeout(() => {
+        if (currentQuestionIndex < questions.length) {
+            showQuestion(questions[currentQuestionIndex]);
+            startTimer();
+        } else {
+            endTime = Date.now();
+            showResults();
+        }
+
+        // Add fade-in effect
+        questionContainer.classList.remove("fade-out");
+        questionContainer.classList.add("fade-in");
+
+        setTimeout(() => {
+            questionContainer.classList.remove("fade-in"); // Remove after animation
+        }, 300); // Matches CSS transition time
+    }, 300); // Delay matches CSS transition time (0.3s)
+}
+
 function showQuestion(question) {
+    let questionContainer = document.getElementById("question-container");
     questionContainer.innerHTML = `
         <p>${question.question}</p>
-        ${question.answers.map((answer, index) => `<button onclick="selectAnswer(${index})">${answer}</button>`).join('')}
+        ${question.answers.map((answer, index) => `
+            <button class="option-btn" onclick="selectAnswer(${index})">${answer}</button>
+        `).join('')}
     `;
 }
 
 window.selectAnswer = function (index) {
+    let buttons = document.querySelectorAll('.option-btn');
+
+    // Disable all buttons to prevent multiple clicks
+    buttons.forEach(btn => btn.disabled = true);
+
     if (index === questions[currentQuestionIndex].correct) {
         score++;
     }
+
     clearInterval(timer);
     currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion(questions[currentQuestionIndex]);
-        startTimer();
-    } else {
-        endTime = Date.now();
-        showResults();
-    }
-};
 
+    // Add visual feedback before transitioning
+    setTimeout(() => {
+        loadNextQuestion();
+    }, 500); // Short delay to show user feedback before moving on
+};
 function startTimer() {
     timeLeft = 20;
     timerElement.textContent = timeLeft;
