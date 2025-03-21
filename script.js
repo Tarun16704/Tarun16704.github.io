@@ -34,12 +34,27 @@ let startTime;
 let endTime;
 
 const questions = [
-    { question: "What is 2 + 2?", answers: ["3", "4", "5", "6"], correct: 1 },
-    { question: "What is 3 + 3?", answers: ["5", "6", "7", "8"], correct: 1 },
-    { question: "In the context of databases, what does ACID stand for?", answers: ["Atomicity, Consistency, Isolation, Durability", "Automated, Complex, Independent, Deterministic", "Asynchronous, Concurrency, Integrity, Data", "Atomic, Consistent, Independent, Durable"], correct: 0 },
-    { question: "What is the key difference between final, finally, and finalize in Java?", answers: ["final is a keyword, finally is a block, and finalize is a method.", "final is a method, finally is a keyword, and finalize is a class.", "final is used for error handling, finally ensures termination, and finalize prevents memory leaks.", "final and finally are synonyms, finalize is for performance optimization."], correct: 0 },
-    { question: "Which of the following sorting algorithms has an average time complexity of O(n log n) and is not based on comparison?", answers: ["Merge Sort", "Heap Sort", "Quick Sort", "Radix Sort"], correct: 3 },
-   
+    { question: "What is the maximum transmission unit (MTU) for Ethernet networks? ", answers: ["512 bytes", "1024 bytes", "1500 bytes", "2048 bytes"], correct: 2 },
+    { question: "Which of the following is NOT a characteristic of IPv6?", answers: ["Supports longer addresses than IPv4", "Uses 128-bit addressing", "Provides built-in security features", "Is fundamentally incompatible with IPv4"], correct: 3 },
+    { question: "Which of the following isolation levels prevents dirty reads but allows non-repeatable reads?", answers: ["Read Uncommitted", "Read Committed ", "Repeatable Read", "Serializable"], correct: 1 },
+    { question: "What is the output of the following C++ program? int x = 5;cout << x + 5;", answers: ["55", "10", "5", "Error"], correct: 1 },
+    { question: "Which of these programming languages is primarily used for developing iOS applications?", answers: ["Kotlin", "Swift", "Java", "C++"], correct: 1 },
+    { question: "What is the default subnet mask for a Class C IP address?", answers: ["255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255"], correct: 2 },
+    { question: "Which command is used to test the connectivity between two network devices?", answers: ["ipconfig", "ping", "tracert", "netstat"], correct: 1 },
+    { question: "Which SQL statement is used to retrieve data from a database?", answers: ["SELECT", "INSERT", "UPDATE", "DELETE"], correct: 0 },
+    { question: "What is the primary goal of cybersecurity?", answers: ["To build new software", "To protect information and systems from cyber threats", "To create user-friendly interfaces", "To increase internet speed"], correct: 1 },
+    { question: "Which of the following is a type of attack where an attacker intercepts communication between two parties to steal or alter data?", answers: ["Phishing", "Man-in-the-Middle (MitM) attack", "Denial of Service (DoS) attack", "SQL Injection"], correct: 1 },
+    { question: "Which algorithm is commonly used for classification problems in machine learning?", answers: ["K-means Clustering", "Linear Regression", "Decision Tree", "Principal Component Analysis"], correct: 2 },
+    { question: "Which AI technique is commonly used for machine translation and language modeling?", answers: ["Convolutional Neural Networks (CNNs)", "Recurrent Neural Networks (RNNs)", "Decision Trees", "Linear Regression"], correct: 1 },
+    { question: "Which of the following is a correct way to create a Python class?", answers: ["class MyClass: pass", "def MyClass(): pass", "create class MyClass: pass", "class MyClass[] pass"], correct: 0 },
+    { question: "What layer of the OSI model does the TCP protocol operate at?", answers: ["Application Layer", "Data Link Layer", "Network Layer", "Transport Layer"], correct: 3 },
+    { question: "In Python, which of the following function is used to get the ASCII value of a character?", answers: ["ord()", "ascii()", "char()", "chr()"], correct: 0 },
+    { question: "In C#, what is the purpose of the using statement?", answers: ["To include namespaces", "To include namespaces", "To handle resource cleanup", "To create an alias for a namespace"], correct: 2 },
+    { question: "What is the function of a primary key in a database table?", answers: ["To allow duplicate values", "To store large binary objects", "To link to a foreign key", "To uniquely identify each record"], correct: 3 },
+    { question: "Which protocol is used to retrieve emails from a mail server?", answers: ["HTTP", "SMTP", "IMAP", "SNMP"], correct: 2 },
+    { question: "Which protocol is used for secure communication over the internet by encrypting data packets?", answers: ["HTTP", "FTP", "SSL/TLS", "SNMP"], correct: 2 },
+    { question: "What is a zero-day vulnerability?", answers: ["A bug that is fixed within 24 hours", "A vulnerability that is publicly known but not yet patched", "A vulnerability that is discovered and exploited on the same day", "A type of malware that acts immediately"], correct: 2 },
+    
 ];
 
 window.start = function () {
