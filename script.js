@@ -49,7 +49,7 @@ const questions = [
     { question: "Which of the following is a correct way to create a Python class?", answers: ["class MyClass: pass", "def MyClass(): pass", "create class MyClass: pass", "class MyClass[] pass"], correct: 0 },
     { question: "What layer of the OSI model does the TCP protocol operate at?", answers: ["Application Layer", "Data Link Layer", "Network Layer", "Transport Layer"], correct: 3 },
     { question: "In Python, which of the following function is used to get the ASCII value of a character?", answers: ["ord()", "ascii()", "char()", "chr()"], correct: 0 },
-    { question: "In C#, what is the purpose of the using statement?", answers: ["To include namespaces", "To include namespaces", "To handle resource cleanup", "To create an alias for a namespace"], correct: 2 },
+    { question: "In C#, what is the purpose of the using statement?", answers: ["To include namespaces", "To declare a variable", "To handle resource cleanup", "To create an alias for a namespace"], correct: 2 },
     { question: "What is the function of a primary key in a database table?", answers: ["To allow duplicate values", "To store large binary objects", "To link to a foreign key", "To uniquely identify each record"], correct: 3 },
     { question: "Which protocol is used to retrieve emails from a mail server?", answers: ["HTTP", "SMTP", "IMAP", "SNMP"], correct: 2 },
     { question: "Which protocol is used for secure communication over the internet by encrypting data packets?", answers: ["HTTP", "FTP", "SSL/TLS", "SNMP"], correct: 2 },
