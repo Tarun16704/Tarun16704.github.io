@@ -141,7 +141,7 @@ window.selectAnswer = function (index) {
     }, 500); // Short delay to show user feedback before moving on
 };
 function startTimer() {
-    timeLeft = 20;
+    timeLeft = 30;
     timerElement.textContent = timeLeft;
     clearInterval(timer);
     timer = setInterval(() => {
