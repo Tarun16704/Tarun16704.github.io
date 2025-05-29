@@ -27,7 +27,7 @@ const resultElement = document.getElementById('result');
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 20;
+let timeLeft = 30;
 let teamNumber = "";
 let teamName = "";
 let startTime;
